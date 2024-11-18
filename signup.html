@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Sign up</title>
+        <script src="https://kit.fontawesome.com/871106cf4e.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="css/responsive.css">
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/styles.css">
+    </head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light">
+
+    </nav>
+
+
+
+
+
+    <!-- Hero Section -->
+    <section class="hero hero-login">
+        <div class="container d-flex justify-content-center align-items-center">
+            <div class="login-card d-flex">
+                
+                <div class="login-form d-flex justify-content-center align-items-center">
+                    <div>
+                        <h1 class="mb-0">Get Started</h1>
+                        <p>Already have an account? <span class="register-link"><a href="login.html">Sign in</a></span></p>
+                        <!-- <?php
+                            if (isset($error)) {
+                                echo "<div class='alert alert-danger'>$error</div>";
+                            }
+                        ?> -->
+
+                        <form action="signup.php" method="POST" class="mt-5">
+                            <div class="form-group my-3">
+                                <input type="text" name="name" id="name" class="form-control" placeholder="Name" required>
+                            </div>
+                            <div class="form-group my-3">
+                                <input type="email" name="email" id="email" class="form-control" placeholder="Email" required>
+                            </div>
+                            <div class="form-group my-3">
+                                <input type="text" name="username" id="username" class="form-control" placeholder="Username" required onkeyup="checkUsername()">
+                                <small id="username-error" style="color: red;"></small>
+                            </div>
+                            <div class="form-group my-3">
+                                <input type="password" name="password" id="password" class="form-control" placeholder="Password" required>
+                                <small id="password-error" style="color: red;"></small>
+                            </div>
+                            <div class="form-group my-3">
+                                <button type="button" id="togglePassword" onclick="togglePasswordVisibility()">Show password</button>
+                            </div>
+                            <button type="submit" class="btn btn-primary login-btn">Sign Up</button>
+                        </form>
+                        
+
+                        
+                    </div>
+                </div>
+                <div class="login-image signup">
+                    <img src="images/pexels-timea-kadar-860778-2130616.jpg" alt="" srcset="">
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- Footer section -->
+    <div class="custom-footer"></div>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/jquery.magnific-popup.min.js"></script>
+    <script src="js/jquery.waypoints.js"></script>
+    <script src="js/jquery.counterup.min.js"></script>
+    <script src="js/jquery.barfiller.js"></script>
+    <script src="js/index.js"></script>
+
+    <script>
+        // Function to check if the username is already taken
+        function checkUsername() {
+            const username = document.getElementById('username').value;
+            const usernameError = document.getElementById('username-error');
+        
+            // AJAX request to check_username.php
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', 'check_username.php', true);
+            xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+        
+            xhr.onreadystatechange = function () {
+                if (this.readyState === 4 && this.status === 200) {
+                    if (this.responseText === 'exists') {
+                        usernameError.textContent = "Username already exists!";
+                        usernameError.style.color = "red";
+                    } else {
+                        usernameError.textContent = "Username is available";
+                        usernameError.style.color = "green";
+                    }
+                }
+            };
+        
+            xhr.send('username=' + encodeURIComponent(username));
+        }
+        </script>
+        
+</body>
+</html>
